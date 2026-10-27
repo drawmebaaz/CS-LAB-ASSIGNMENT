@@ -1,0 +1,21 @@
+{
+  "name": "os-command-injection-lab-local",
+  "version": "1.1.0",
+  "private": true,
+  "description": "Local educational demonstration of in-band OS command injection and execFile mitigation; no Docker or database.",
+  "main": "src/app.js",
+  "scripts": {
+    "start": "node src/server.js",
+    "test": "node --test",
+    "test:watch": "node --test --watch"
+  },
+  "engines": {
+    "node": ">=20"
+  },
+  "dependencies": {
+    "express": "^4.21.2"
+  },
+  "devDependencies": {
+    "supertest": "^7.1.1"
+  }
+}

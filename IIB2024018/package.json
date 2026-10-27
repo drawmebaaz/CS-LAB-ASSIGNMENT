@@ -1,0 +1,16 @@
+{
+  "name": "csrf-browser-storage-lab",
+  "version": "1.1.0",
+  "private": true,
+  "workspaces": [
+    "apps/vulnerable",
+    "apps/cat"
+  ],
+  "scripts": {
+    "dev": "concurrently -k -n VULNERABLE,CAT -c green,magenta \"npm run dev --workspace vulnerable-site\" \"npm run dev --workspace cat-site\"",
+    "build": "npm run build --workspaces --if-present"
+  },
+  "devDependencies": {
+    "concurrently": "^9.1.2"
+  }
+}

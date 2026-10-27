@@ -1,0 +1,113 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="A local educational lab showing in-band OS command injection and an execFile mitigation.">
+  <title>Command Injection Security Lab</title>
+  <link rel="stylesheet" href="/styles.css">
+  <script src="/app.js" defer></script>
+</head>
+<body>
+  <div class="page-shell">
+    <header class="topbar">
+      <a class="brand" href="/" aria-label="Command Injection Security Lab home">
+        <span class="brand-icon" aria-hidden="true">&gt;_</span>
+        <span><strong>SECURITY LAB</strong><small>WEB SERVER SECURITY</small></span>
+      </a>
+      <div class="topbar-meta"><span class="live-dot"></span> LOCAL EDUCATIONAL DEMO</div>
+    </header>
+
+    <main>
+      <section class="hero">
+        <div class="eyebrow"><span class="eyebrow-line"></span> CYBER SECURITY · ASSIGNMENT LAB</div>
+        <h1>OS Command <span>Injection</span></h1>
+        <p class="hero-copy">See how unsafe shell-command construction can run an unintended command — then compare it with a safer implementation.</p>
+        <div class="hero-tags"><span>VARIANT 1</span><span>IN-BAND · OUTPUT RETURNED</span><span>NODE.JS + EXPRESS</span></div>
+      </section>
+
+      <aside class="safety-banner" role="note">
+        <span class="safety-symbol" aria-hidden="true">!</span>
+        <div><strong>Local educational lab — localhost only</strong><p>The vulnerable route is intentionally unsafe. Run it only on your own computer at 127.0.0.1. It accepts only two predefined harmless test inputs. No Docker and no database are used.</p></div>
+      </aside>
+
+      <section class="section-block" aria-labelledby="test-heading">
+        <div class="section-heading"><div><div class="section-kicker">01 / RUN THE TEST</div><h2 id="test-heading">Choose your input</h2></div><span class="section-number">01</span></div>
+        <div class="input-card">
+          <label for="test-input">Demo input</label>
+          <input id="test-input" type="text" value="hello" autocomplete="off" spellcheck="false" aria-describedby="input-help">
+          <p id="input-help" class="help-text">Use one of the two predefined lab inputs. Arbitrary commands are rejected.</p>
+          <div class="preset-row">
+            <button class="button button-muted" id="normal-button" type="button">Use normal input</button>
+            <button class="button button-muted" id="payload-button" type="button">Load harmless payload</button>
+            <button class="button button-text" id="reset-button" type="button">Reset results</button>
+          </div>
+          <div class="run-row">
+            <button class="button button-danger" id="run-vulnerable" type="button"><span aria-hidden="true">▶</span> Run vulnerable test</button>
+            <button class="button button-safe" id="run-protected" type="button"><span aria-hidden="true">✓</span> Run protected test</button>
+            <button class="button button-primary" id="compare-button" type="button">Compare both <span aria-hidden="true">↗</span></button>
+          </div>
+          <p class="global-status" id="global-status" role="status" aria-live="polite">Ready. Choose a test to begin.</p>
+        </div>
+      </section>
+
+      <section class="section-block" aria-labelledby="results-heading">
+        <div class="section-heading"><div><div class="section-kicker">02 / OBSERVE THE RESULT</div><h2 id="results-heading">Before vs. after</h2></div><span class="section-number">02</span></div>
+        <div class="results-grid">
+          <article class="result-card vulnerable-card">
+            <div class="result-card-head"><div class="result-icon danger-icon" aria-hidden="true">!</div><div><p class="card-overline">BEFORE MITIGATION</p><h3>Vulnerable version</h3></div><span class="status-pill status-idle" id="vuln-status">NOT RUN</span></div>
+            <p class="card-description">Uses <code>exec()</code> with a command string. The shell interprets the semicolon in the approved demo payload.</p>
+            <div class="mini-label">COMMAND PREVIEW</div><pre class="code-preview" id="vuln-command">Waiting for a test…</pre>
+            <div class="mini-label">STANDARD OUTPUT (stdout)</div><pre class="terminal-output" id="vuln-output" aria-live="polite">No output yet.</pre>
+            <div class="mini-label">STANDARD ERROR (stderr)</div><pre class="terminal-output secondary-output" id="vuln-stderr">No error output.</pre>
+            <div class="marker-result" id="vuln-marker"><span class="marker-dot"></span><span>Marker execution not checked yet.</span></div>
+          </article>
+
+          <article class="result-card protected-card">
+            <div class="result-card-head"><div class="result-icon safe-icon" aria-hidden="true">✓</div><div><p class="card-overline">AFTER MITIGATION</p><h3>Protected version</h3></div><span class="status-pill status-idle" id="safe-status">NOT RUN</span></div>
+            <p class="card-description">Uses <code>execFile()</code> with a separate argument array. No shell is used to interpret the input.</p>
+            <div class="mini-label">EXECUTABLE + ARGUMENT PREVIEW</div><pre class="code-preview" id="safe-command">Waiting for a test…</pre>
+            <div class="mini-label">STANDARD OUTPUT (stdout)</div><pre class="terminal-output" id="safe-output" aria-live="polite">No output yet.</pre>
+            <div class="mini-label">STANDARD ERROR (stderr)</div><pre class="terminal-output secondary-output" id="safe-stderr">No error output.</pre>
+            <div class="marker-result" id="safe-marker"><span class="marker-dot"></span><span>Marker execution not checked yet.</span></div>
+          </article>
+        </div>
+        <div class="comparison-note" id="comparison-note" role="status" aria-live="polite"><span class="note-icon">i</span><p>Tip: load the harmless payload and compare both implementations. In the protected output, the payload appears as literal text; it is not run as a second command.</p></div>
+      </section>
+
+      <section class="section-block" aria-labelledby="learn-heading">
+        <div class="section-heading"><div><div class="section-kicker">03 / UNDERSTAND THE FLAW</div><h2 id="learn-heading">What is happening?</h2></div><span class="section-number">03</span></div>
+        <div class="explain-grid">
+          <article class="explain-card"><div class="explain-num">A</div><h3>Vulnerable flow</h3><div class="flow"><span>User input</span><b>↓</b><span>String concatenation</span><b>↓</b><span class="flow-danger">Shell interprets syntax</span><b>↓</b><span>Extra command output</span></div><p>The vulnerable endpoint adds input to a shell command. The shell treats <code>;</code> as a command separator.</p></article>
+          <article class="explain-card"><div class="explain-num">B</div><h3>Protected flow</h3><div class="flow"><span>User input</span><b>↓</b><span>Argument array</span><b>↓</b><span class="flow-safe">No shell interpretation</span><b>↓</b><span>Input printed as text</span></div><p>The protected endpoint passes the value as one argument to <code>echo</code> using <code>execFile()</code>.</p></article>
+        </div>
+        <div class="root-cause"><div class="root-cause-icon" aria-hidden="true">⌘</div><div><h3>Root cause</h3><p>Untrusted input is concatenated into a shell command. The shell interprets special characters in that input as command syntax, allowing an unintended command to execute.</p></div></div>
+      </section>
+
+      <section class="section-block" aria-labelledby="mitigation-heading">
+        <div class="section-heading"><div><div class="section-kicker">04 / DEFEND THE APPLICATION</div><h2 id="mitigation-heading">Mitigation and alternatives</h2></div><span class="section-number">04</span></div>
+        <div class="mitigation-table-wrap"><table><thead><tr><th>Defense</th><th>How it helps</th><th>In this project</th></tr></thead><tbody>
+          <tr><td><strong>Avoid the shell</strong></td><td>Use a library or process API that does not interpret a shell command string.</td><td><span class="table-tag implemented">Implemented</span></td></tr>
+          <tr><td><strong>Argument-vector execution</strong></td><td>Pass the executable and its arguments separately instead of concatenating them into a command string.</td><td><span class="table-tag implemented">Implemented</span></td></tr>
+          <tr><td><strong>Allow-list validation</strong></td><td>Accept only expected values, such as a valid IP address if an IP is required.</td><td><span class="table-tag theory">Also used to restrict demo inputs</span></td></tr>
+          <tr><td><strong>Least privilege</strong></td><td>Run the application with only the operating-system permissions it needs.</td><td><span class="table-tag theory">Alternative defense to explain</span></td></tr>
+        </tbody></table></div>
+        <p class="caution-copy">No single API makes every input safe automatically. Keep input validation, a fixed executable, timeouts, output limits, and least privilege.</p>
+      </section>
+
+
+      <section class="section-block" aria-labelledby="history-heading">
+        <div class="section-heading"><div><div class="section-kicker">05 / LOCAL BROWSER STORAGE</div><h2 id="history-heading">Recent test history</h2></div><span class="section-number">05</span></div>
+        <div class="history-card">
+          <div class="history-top"><p id="storage-status" class="storage-status">Test history is saved in this browser only. No database is used.</p><button class="button button-muted" id="clear-history" type="button">Clear local history</button></div>
+          <div id="history-list" class="history-list"><p class="history-empty">Loading local history…</p></div>
+        </div>
+      </section>
+
+      <section class="viva-card" aria-labelledby="viva-heading"><div class="viva-tag">VIVA QUICK ANSWER</div><h2 id="viva-heading">How would you explain this project?</h2><p>“My project demonstrates in-band OS command injection. The vulnerable endpoint concatenates a predefined user input into a shell command using <code>exec()</code>, so the shell runs the second harmless command and its output returns in the HTTP response. I mitigated this by using <code>execFile()</code> with a separate argument array, so the semicolon is treated as text rather than a command separator. I compare both outputs using the same payload.”</p></section>
+    </main>
+
+    <footer><span>COMMAND INJECTION SECURITY LAB</span><span>Educational use only · localhost · browser localStorage</span></footer>
+  </div>
+</body>
+</html>

@@ -1,0 +1,38 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 520" role="img" aria-label="Orange cat illustration">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#f9d9a7"/><stop offset="1" stop-color="#efb980"/></linearGradient>
+    <linearGradient id="fur" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#f7a44b"/><stop offset="1" stop-color="#d97434"/></linearGradient>
+    <linearGradient id="belly" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#fff0d6"/><stop offset="1" stop-color="#f7dcb9"/></linearGradient>
+  </defs>
+  <rect width="720" height="520" rx="32" fill="url(#bg)"/>
+  <circle cx="116" cy="103" r="42" fill="#ffefce" opacity=".65"/><circle cx="612" cy="142" r="24" fill="#ffefce" opacity=".65"/><path d="M75 356c34-20 65-20 91 0M550 95c23-17 46-17 69 0" fill="none" stroke="#bd7b4d" stroke-width="5" stroke-linecap="round" opacity=".38"/>
+  <ellipse cx="366" cy="437" rx="179" ry="25" fill="#aa6b45" opacity=".18"/>
+  <!-- curled tail -->
+  <path d="M478 362c83 4 111 76 67 107-41 28-98 0-92-37 4-23 33-28 46-10" fill="none" stroke="#c86a30" stroke-width="43" stroke-linecap="round"/>
+  <path d="M490 369c57 10 75 50 60 72" fill="none" stroke="#f6a24b" stroke-width="26" stroke-linecap="round"/>
+  <!-- body -->
+  <path d="M245 252c8-61 53-94 119-94 81 0 132 57 133 152l-4 88c-1 23-20 39-43 39H274c-25 0-46-20-44-45l15-140Z" fill="url(#fur)"/>
+  <path d="M300 274c8-37 31-56 65-56 42 0 67 29 75 78l8 81c2 18-12 31-30 31H306c-18 0-31-15-29-31l23-103Z" fill="url(#belly)"/>
+  <path d="M288 175c18 12 33 31 38 53M350 158c-6 23-5 42 1 57M416 174c-9 18-12 39-8 57" fill="none" stroke="#b85e2d" stroke-width="11" stroke-linecap="round" opacity=".85"/>
+  <!-- legs -->
+  <path d="M269 369c-6 30-8 48 12 54h38c15-2 19-18 15-54M408 369c-1 27 7 49 24 54h34c16-3 17-19 12-54" fill="#f8dfb8"/>
+  <path d="M288 411h32M427 411h31" stroke="#dcac77" stroke-width="3" stroke-linecap="round"/>
+  <!-- head and ears -->
+  <path d="M239 146 217 62c-3-13 9-20 20-12l79 48M407 98l72-51c12-8 25 0 22 14l-15 88" fill="#df8035"/>
+  <path d="M244 125 232 79l57 34M428 107l49-35-10 53" fill="#efb1a0"/>
+  <ellipse cx="359" cy="157" rx="128" ry="109" fill="url(#fur)"/>
+  <path d="M337 56c8 25 8 42 0 61M365 47c-5 24-4 42 4 62M393 57c-13 21-16 38-12 59" fill="none" stroke="#b85e2d" stroke-width="10" stroke-linecap="round" opacity=".8"/>
+  <!-- cheeks and muzzle -->
+  <ellipse cx="310" cy="181" rx="34" ry="28" fill="#f8c77f"/><ellipse cx="407" cy="181" rx="34" ry="28" fill="#f8c77f"/>
+  <ellipse cx="359" cy="190" rx="45" ry="31" fill="#fff0d6"/>
+  <path d="m350 180 9-7 10 7-10 9Z" fill="#8e5145"/><path d="M359 189c-5 12-15 14-23 9M359 189c5 12 15 14 23 9" fill="none" stroke="#8e5145" stroke-width="3" stroke-linecap="round"/>
+  <!-- eyes -->
+  <ellipse cx="310" cy="147" rx="12" ry="17" fill="#3d4b43"/><ellipse cx="408" cy="147" rx="12" ry="17" fill="#3d4b43"/><ellipse cx="314" cy="141" rx="4" ry="5" fill="#fff8df"/><ellipse cx="412" cy="141" rx="4" ry="5" fill="#fff8df"/>
+  <!-- whiskers -->
+  <path d="M303 190 252 180M305 202l-53 9M415 190l52-10M413 202l52 10" stroke="#fff0d6" stroke-width="3" stroke-linecap="round"/>
+  <!-- collar -->
+  <path d="M254 239c65 31 144 34 210 0l7 19c-68 37-153 35-223 0Z" fill="#4d8d82"/><circle cx="361" cy="267" r="13" fill="#f6d776" stroke="#fff0d6" stroke-width="3"/>
+  <!-- freckles and floating hearts -->
+  <circle cx="294" cy="187" r="3" fill="#db8e65"/><circle cx="302" cy="192" r="3" fill="#db8e65"/><circle cx="423" cy="187" r="3" fill="#db8e65"/><circle cx="415" cy="192" r="3" fill="#db8e65"/>
+  <path d="M558 251c-15-16-38 2 0 31 38-29 15-47 0-31Z" fill="#f7f0d8" opacity=".9"/><path d="M157 241c-11-12-28 2 0 23 28-21 11-35 0-23Z" fill="#fff0d6" opacity=".9"/>
+</svg>
